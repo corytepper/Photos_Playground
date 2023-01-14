@@ -10,7 +10,7 @@ import UIKit
 class PhotoCollectionViewCell: UICollectionViewCell {
     static let identifier = "PhotoCollectionViewCell"
     
-    private let imageView: UIImageView = {
+    public let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -21,15 +21,15 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(imageView)
         
-        let images = [
-            UIImage(named: "image1"),
-            UIImage(named: "image2"),
-            UIImage(named: "image3"),
-            UIImage(named: "image4"),
-            UIImage(named: "image5"),
-            UIImage(named: "image6"),
-        ].compactMap({ $0 })
-        imageView.image = images.randomElement()
+//        let images = [
+//            UIImage(named: "image1"),
+//            UIImage(named: "image2"),
+//            UIImage(named: "image3"),
+//            UIImage(named: "image4"),
+//            UIImage(named: "image5"),
+//            UIImage(named: "image6"),
+//        ].compactMap({ $0 })
+//        imageView.image = images.randomElement()
     }
     
     required init?(coder: NSCoder) {
@@ -43,7 +43,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView.image = nil
+//        imageView.image = nil
     }
     
 }

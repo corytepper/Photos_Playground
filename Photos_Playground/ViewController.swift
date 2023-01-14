@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Photos
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    private var images = [PHAsset]()
     
     private let collectionView = UICollectionView(
         frame: .zero,
@@ -20,6 +23,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
+        
+        populatePhotos()
     }
     
     override func viewDidLayoutSubviews() {
@@ -27,13 +32,73 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.frame = view.bounds
     }
 
+    
+    private func populatePhotos() {
+        
+        PHPhotoLibrary.requestAuthorization { [weak self] status in
+            
+            if status == .authorized {
+                
+                let fromDate = NSDate(dateString:"01-02-2010")
+                let toDate = NSDate(dateString: "01-02-2012")
+                
+                
+                let options = PHFetchOptions()
+                options.sortDescriptors = [ NSSortDescriptor(key: "creationDate", ascending: true)]
+                options.predicate = NSPredicate(
+                  format: "mediaType = %d AND (creationDate >= %@) AND (creationDate <= %@)",
+                  PHAssetMediaType.image.rawValue,
+                  fromDate as NSDate,
+                  toDate as NSDate
+                )
+                
+                let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: options)
+                
+                assets.enumerateObjects { (object, _, _) in
+                    print(object)
+                    self?.images.append(object)
+                }
+                
+                self?.images.reverse()
+                
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
+               
+            }
+            
+        }
+        
+    }
+    
+    
+    // MARK: - Collection View Setup
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return self.images.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier,
-                                                      for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier,
+                                                      for: indexPath) as? PhotoCollectionViewCell
+        else {
+            fatalError("PhotoCollectionViewCell is not found")
+        }
+        
+        let asset = self.images[indexPath.row]
+        let manager = PHImageManager.default()
+        
+        manager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFit, options: nil) { image, _ in
+            
+            DispatchQueue.main.async {
+                cell.imageView.image = image
+            }
+        }
+        
         return cell
     }
     

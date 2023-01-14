@@ -14,6 +14,7 @@
 		2FDFD07F2973298900C23098 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFD07E2973298900C23098 /* Assets.xcassets */; };
 		2FDFD0822973298900C23098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFD0802973298900C23098 /* LaunchScreen.storyboard */; };
 		2FDFD08A29732E5600C23098 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD08929732E5600C23098 /* PhotoCollectionViewCell.swift */; };
+		2FDFD08C29734C2100C23098 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD08B29734C2100C23098 /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2FDFD0812973298900C23098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2FDFD0832973298900C23098 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FDFD08929732E5600C23098 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		2FDFD08B29734C2100C23098 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				2FDFD0752973298800C23098 /* AppDelegate.swift */,
 				2FDFD0772973298800C23098 /* SceneDelegate.swift */,
 				2FDFD0792973298800C23098 /* ViewController.swift */,
+				2FDFD08B29734C2100C23098 /* Date+Ext.swift */,
 				2FDFD08929732E5600C23098 /* PhotoCollectionViewCell.swift */,
 				2FDFD07B2973298800C23098 /* Main.storyboard */,
 				2FDFD07E2973298900C23098 /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 				2FDFD08A29732E5600C23098 /* PhotoCollectionViewCell.swift in Sources */,
 				2FDFD0762973298800C23098 /* AppDelegate.swift in Sources */,
 				2FDFD0782973298800C23098 /* SceneDelegate.swift in Sources */,
+				2FDFD08C29734C2100C23098 /* Date+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
